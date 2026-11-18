@@ -40,6 +40,7 @@ jobs:
       uses: actions/setup-python@v7.1.0
       with:
         python-version: ${{ matrix.python.action }}
+        cache: pip
 
     - name: Install dependencies
       run: python -m pip install --upgrade pip nox
@@ -143,6 +144,7 @@ jobs:
       uses: actions/setup-python@v7.1.0
       with:
         python-version: ${{ matrix.python.action }}
+        cache: pip
 
     - name: Install dependencies
       run: python -m pip install --upgrade pip nox
@@ -194,6 +196,7 @@ jobs:
       uses: actions/setup-python@v7.1.0
       with:
         python-version: ${{ matrix.python.python-version }}
+        cache: pip
 
     - name: Install dependencies
       run: python -m pip install --upgrade pip nox
@@ -219,6 +222,7 @@ jobs:
       uses: actions/setup-python@v7.1.0
       with:
         python-version: 3.12
+        cache: pip
 
     - name: Install dependencies
       run: python -m pip install pre-commit
@@ -262,6 +266,7 @@ jobs:
       uses: actions/setup-python@v7.1.0
       with:
         python-version: 3.12
+        cache: pip
 
     - name: Display structure of files to be pushed
       run: ls --recursive dist/
@@ -286,6 +291,7 @@ jobs:
       with:
         # Use latest Python, so it understands all syntax.
         python-version: 3.12
+        cache: pip
 
     - run: python -Im pip install --upgrade coverage[toml]
 
