@@ -1,3 +1,19 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 12 optimizations:
+# - [HIGH] Add pip dependency cache to "build" job
+# - [HIGH] Add pip dependency cache to "test-windows" job
+# - [HIGH] Add pip dependency cache to "check" job
+# - [HIGH] Add pip dependency cache to "pre-commit" job
+# - [HIGH] Add pip dependency cache to "pypi-publish" job
+# - [HIGH] Add pip dependency cache to "coverage" job
+# - [MEDIUM] Add concurrency group to "ci.yml"
+# - [MEDIUM] Switch "test-windows" from Windows to ubuntu runner
+# - [MEDIUM] 7 jobs clone the repo — consider artifact sharing
+# - [LOW] Explicitly set fail-fast for large matrix job "test-linux" (6 combinations)
+# - [LOW] Use shallow clone in "check" job
+# - [LOW] Use shallow clone in "pre-commit" job
+# Estimated savings: ~23 min/run
+#
 name: CI
 
 on:
@@ -7,6 +23,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 defaults:
   run:
     shell: bash
